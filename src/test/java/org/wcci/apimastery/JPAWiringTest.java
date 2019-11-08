@@ -11,6 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.wcci.apimastery.objects.Category;
+import org.wcci.apimastery.objects.Game;
+import org.wcci.apimastery.objects.Publisher;
+import org.wcci.apimastery.objects.System;
+import org.wcci.apimastery.repositories.CategoryRepository;
+import org.wcci.apimastery.repositories.GameRepository;
+import org.wcci.apimastery.repositories.PublisherRepository;
+import org.wcci.apimastery.repositories.SystemRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
