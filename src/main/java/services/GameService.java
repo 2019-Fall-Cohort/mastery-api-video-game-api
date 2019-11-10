@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.wcci.apimastery.objects.Game;
 import org.wcci.apimastery.repositories.GameRepository;
 
+import exceptions.GameNotFoundException;
+
 @Service
 public class GameService {
 
@@ -18,8 +20,12 @@ public class GameService {
 		return gameRepo.save(game);
 	}
 
-	public Optional<Game> findCategoryById(Long id) {
-		return gameRepo.findById(id);
+	public Game findGameById(Long id) {
+		Optional<Game> retrievedGameOptional = gameRepo.findById(id);
+		if (!retrievedGameOptional.isPresent()) {
+			throw new GameNotFoundException("Game not found.");
+		}
+		return retrievedGameOptional.get();
 	}
 	
 	public void deleteGame(Game game) {

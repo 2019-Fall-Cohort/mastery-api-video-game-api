@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.wcci.apimastery.objects.Publisher;
 import org.wcci.apimastery.repositories.PublisherRepository;
 
+import exceptions.PublisherNotFoundException;
+
 @Service
 public class PublisherService {
 
@@ -18,11 +20,15 @@ public class PublisherService {
 		return publisherRepo.save(publisher);
 	}
 	
-	public Optional<Publisher> findCategoryById(Long id) {
-		return publisherRepo.findById(id);
+	public Publisher findPublisherById(Long id) {
+		Optional<Publisher> retrievedPublisherOptional = publisherRepo.findById(id);
+		if (!retrievedPublisherOptional.isPresent()) {
+			throw new PublisherNotFoundException("Publisher not found.");
+		}
+		return retrievedPublisherOptional.get();
 	}
 	
-	public List<Publisher> fetchAllCategories() {
+	public List<Publisher> fetchAllPublishers() {
 		return (List<Publisher>) publisherRepo.findAll();
 	}
 	

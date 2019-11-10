@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.wcci.apimastery.objects.Category;
 import org.wcci.apimastery.repositories.CategoryRepository;
 
+import exceptions.CategoryNotFoundException;
+
 @Service
 public class CategoryService {
 	
@@ -18,8 +20,12 @@ public class CategoryService {
 		return categoryRepo.save(category);
 	}
 	
-	public Optional<Category> findCategoryById(Long id) {
-		return categoryRepo.findById(id);
+	public Category findCategoryById(Long id) {
+		Optional<Category> retrievedCategoryOptional = categoryRepo.findById(id);
+		if (!retrievedCategoryOptional.isPresent()) {
+			throw new CategoryNotFoundException("Category not found.");
+		}
+		return retrievedCategoryOptional.get();
 	}
 	
 	public List<Category> fetchAllCategories() {

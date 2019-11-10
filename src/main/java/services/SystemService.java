@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.wcci.apimastery.objects.System;
 import org.wcci.apimastery.repositories.SystemRepository;
 
+import exceptions.SystemNotFoundException;
+
 @Service
 public class SystemService {
 	
@@ -18,11 +20,15 @@ public class SystemService {
 		return systemRepo.save(system);
 	}
 	
-	public Optional<System> findCategoryById(Long id) {
-		return systemRepo.findById(id);
+	public System findSystemById(Long id) {
+		Optional<System> retrievedSystemOptional = systemRepo.findById(id);
+		if (!retrievedSystemOptional.isPresent()) {
+			throw new SystemNotFoundException("System not found.");
+		}
+		return retrievedSystemOptional.get();
 	}
 	
-	public List<System> fetchAllCategories() {
+	public List<System> fetchAllSystems() {
 		return (List<System>) systemRepo.findAll();
 	}
 	
