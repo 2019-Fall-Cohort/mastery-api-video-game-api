@@ -1,5 +1,7 @@
 package org.wcci.apimastery;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.wcci.apimastery.objects.Category;
@@ -50,8 +52,8 @@ public class GameService {
 		return systemRepo.save(system);
 	}
 
-	public Iterable<Game> retrieveAllGames() {
-		return gameRepo.findAll();
+	public List<Game> retrieveAllGames() {
+		return (List<Game>) gameRepo.findAll();
 	}
 
 }
