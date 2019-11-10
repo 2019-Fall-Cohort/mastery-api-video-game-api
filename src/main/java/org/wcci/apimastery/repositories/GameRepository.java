@@ -7,5 +7,4 @@ import org.wcci.apimastery.objects.Game;
 @Repository
 public interface GameRepository extends CrudRepository<Game, Long> {
 
-	public Iterable<Game> findGameByTitle(String title);
 }

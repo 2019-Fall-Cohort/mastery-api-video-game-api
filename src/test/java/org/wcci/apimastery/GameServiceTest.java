@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.wcci.apimastery.objects.Game;
 
+import services.GameService;
+
 public class GameServiceTest {
 
 	@Autowired
