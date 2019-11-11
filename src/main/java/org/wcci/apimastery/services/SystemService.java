@@ -19,6 +19,10 @@ public class SystemService {
 		return systemRepo.save(system);
 	}
 	
+	public List<System> fetchAllSystems() {
+		return (List<System>) systemRepo.findAll();
+	}
+	
 	public System findSystemById(Long id) {
 		Optional<System> retrievedSystemOptional = systemRepo.findById(id);
 		if (!retrievedSystemOptional.isPresent()) {
@@ -27,12 +31,18 @@ public class SystemService {
 		return retrievedSystemOptional.get();
 	}
 	
-	public List<System> fetchAllSystems() {
-		return (List<System>) systemRepo.findAll();
-	}
+	public System findSystemByName(String name) {
+		System retrievedSystem;
+		try {
+			retrievedSystem = systemRepo.findSystemByName(name);
+		} catch (Exception e) {
+			throw new SystemNotFoundException("System not found.");
+		}
+		return retrievedSystem;
+	}	
 	
 	public void deleteSystem(System system) {
 		systemRepo.delete(system);
-	}
+	}	
 
 }

@@ -6,5 +6,8 @@ import org.wcci.apimastery.entities.Publisher;
 
 @Repository
 public interface PublisherRepository extends CrudRepository<Publisher, Long> {
+	
+	public Iterable<Publisher> findAllOrderByName();
+	public Publisher findPublisherByName(String name);
 
 }

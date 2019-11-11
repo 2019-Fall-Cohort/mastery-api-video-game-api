@@ -42,7 +42,7 @@ public class Game {
 		this.imageUrl = imageUrl;
 		this.publisher = publisher;
 		this.system = system;
-//		comments = new ArrayList<>();
+		comments = new ArrayList<>();
 	}
 
 	public Long getId() {
