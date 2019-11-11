@@ -1,11 +1,13 @@
-package org.wcci.apimastery.objects;
+package org.wcci.apimastery.entities;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Game {
@@ -14,13 +16,17 @@ public class Game {
 	@GeneratedValue
 	private Long id;
 	private String title;
-	private String releaseDate;
+	private String releaseDate;	
+	@ManyToOne
 	private Category category;
-	private String imageUrl;
-	private Publisher publisher;
-	private System system;
-	private List<People> people;
-	private List<Comments> comments;
+	private String imageUrl;	
+	@ManyToOne
+	private Publisher publisher;	
+	@ManyToOne
+	private System system;	
+//	private List<People> people;
+	@ElementCollection
+	private List<Comment> comments;
 	
 	protected Game() {}
 	
@@ -36,7 +42,7 @@ public class Game {
 		this.imageUrl = imageUrl;
 		this.publisher = publisher;
 		this.system = system;
-		comments = new ArrayList<>();
+//		comments = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -66,13 +72,47 @@ public class Game {
 	public System getSystem() {
 		return system;
 	}
+	
+//	public List<People> getPeople() {
+//	return people;
+//}
 
-	public List<People> getPeople() {
-		return people;
+	public List<Comment> getComments() {
+		return comments;
+	}
+	
+	public void addComment(Comment comment) {
+		comments.add(comment);
+	}
+	
+	public void updateTitle(String title) {
+		this.title = title;
+	}
+	
+	public void updateReleaseDate(String releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+	
+	public void updateImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	
+	public void updateCategory(Category category) {
+		this.category = category;
+	}
+	
+	public void updatePublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+	
+	public void updateSystem(System system) {
+		this.system = system;
 	}
 
-	public List<Comments> getComments() {
-		return comments;
+	@Override
+	public String toString() {
+		return "Game [id=" + id + ", title=" + title + ", releaseDate=" + releaseDate + ", category=" + category
+				+ ", imageUrl=" + imageUrl + ", publisher=" + publisher + ", system=" + system + "]";
 	}
 
 	@Override
@@ -80,10 +120,8 @@ public class Game {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((category == null) ? 0 : category.hashCode());
-		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((imageUrl == null) ? 0 : imageUrl.hashCode());
-		result = prime * result + ((people == null) ? 0 : people.hashCode());
 		result = prime * result + ((publisher == null) ? 0 : publisher.hashCode());
 		result = prime * result + ((releaseDate == null) ? 0 : releaseDate.hashCode());
 		result = prime * result + ((system == null) ? 0 : system.hashCode());
@@ -105,11 +143,6 @@ public class Game {
 				return false;
 		} else if (!category.equals(other.category))
 			return false;
-		if (comments == null) {
-			if (other.comments != null)
-				return false;
-		} else if (!comments.equals(other.comments))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -119,11 +152,6 @@ public class Game {
 			if (other.imageUrl != null)
 				return false;
 		} else if (!imageUrl.equals(other.imageUrl))
-			return false;
-		if (people == null) {
-			if (other.people != null)
-				return false;
-		} else if (!people.equals(other.people))
 			return false;
 		if (publisher == null) {
 			if (other.publisher != null)
@@ -147,14 +175,4 @@ public class Game {
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Game [id=" + id + ", title=" + title + ", releaseDate=" + releaseDate + ", category=" + category
-				+ ", imageUrl=" + imageUrl + ", publisher=" + publisher + ", system=" + system + ", people=" + people
-				+ ", comments=" + comments + "]";
-	}
-	
-	
-
 }

@@ -1,24 +1,25 @@
-package org.wcci.apimastery.objects;
+package org.wcci.apimastery.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Category {
-
+public class People {
+	
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String name;
 	
-	protected Category () {}
+	protected People() {}
 	
-	public Category(String name) {
+	public People (String name) {
 		this.name = name;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
+
 }

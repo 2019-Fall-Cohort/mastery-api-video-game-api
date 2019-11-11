@@ -1,14 +1,13 @@
-package services;
+package org.wcci.apimastery.services;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.wcci.apimastery.objects.Category;
+import org.wcci.apimastery.entities.Category;
+import org.wcci.apimastery.exceptions.CategoryNotFoundException;
 import org.wcci.apimastery.repositories.CategoryRepository;
-
-import exceptions.CategoryNotFoundException;
 
 @Service
 public class CategoryService {

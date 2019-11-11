@@ -1,14 +1,13 @@
-package services;
+package org.wcci.apimastery.services;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.wcci.apimastery.objects.System;
+import org.wcci.apimastery.entities.System;
+import org.wcci.apimastery.exceptions.SystemNotFoundException;
 import org.wcci.apimastery.repositories.SystemRepository;
-
-import exceptions.SystemNotFoundException;
 
 @Service
 public class SystemService {
