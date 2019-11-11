@@ -9,16 +9,23 @@ import org.wcci.apimastery.entities.Category;
 import org.wcci.apimastery.exceptions.CategoryNotFoundException;
 import org.wcci.apimastery.repositories.CategoryRepository;
 
+import java.sql.*;
+import org.h2.tools.Csv;
+import org.h2.tools.SimpleResultSet;
+
 @Service
 public class CategoryService {
 
 	@Autowired
-	private CategoryRepository categoryRepo;
+	private CategoryRepository categoryRepo;	
+	private String categoriesDataFile = "src/main/resources/data/categories.csv";
 
 	public Category addCategory(Category category) {
-		return categoryRepo.save(category);
+		Category savedCategory = categoryRepo.save(category);
+		updateCSV();
+		return savedCategory;
 	}
-	
+
 	public List<Category> fetchAllCategories() {
 		return categoryRepo.findAllByOrderByName();
 	}
@@ -41,12 +48,50 @@ public class CategoryService {
 		}
 
 		return retrievedCategory;
-	}	
+	}
 
 	public void deleteCategory(Category category) {
 		categoryRepo.delete(category);
+		updateCSV();
 	}
-	
-	
+
+	private void updateCSV() {
+		SimpleResultSet rs = new SimpleResultSet();
+		rs.addColumn("NAME", Types.VARCHAR, 255, 0);
+
+		List<Category> categoryList = fetchAllCategories();
+		for (Category category : categoryList) {
+			rs.addRow(category.getName());
+		}
+
+		try {
+			new Csv().write(categoriesDataFile, rs, null);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void loadCSV() {
+
+		try {
+
+			ResultSet rs = new Csv().read(categoriesDataFile, null, null);
+
+			while (rs.next()) {
+				String categoryName = rs.getString("NAME");
+				java.lang.System.out.println(categoryName);
+				Category category = new Category(categoryName);
+				addCategory(category);
+			}
+
+			rs.close();
+			updateCSV();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 }
