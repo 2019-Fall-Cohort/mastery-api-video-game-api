@@ -20,7 +20,7 @@ public class CategoryService {
 	}
 	
 	public List<Category> fetchAllCategories() {
-		return (List<Category>) categoryRepo.findAll();
+		return categoryRepo.findAllByOrderByName();
 	}
 
 	public Category findCategoryById(Long id) {

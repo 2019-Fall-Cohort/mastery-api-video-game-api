@@ -20,7 +20,7 @@ public class SystemService {
 	}
 	
 	public List<System> fetchAllSystems() {
-		return (List<System>) systemRepo.findAll();
+		return systemRepo.findAllByOrderByName();
 	}
 	
 	public System findSystemById(Long id) {

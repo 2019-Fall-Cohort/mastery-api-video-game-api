@@ -5,9 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.wcci.apimastery.entities.Category;
 import org.wcci.apimastery.entities.Publisher;
-import org.wcci.apimastery.exceptions.CategoryNotFoundException;
 import org.wcci.apimastery.exceptions.PublisherNotFoundException;
 import org.wcci.apimastery.repositories.PublisherRepository;
 
@@ -22,7 +20,7 @@ public class PublisherService {
 	}
 
 	public List<Publisher> fetchAllPublishers() {
-		return (List<Publisher>) publisherRepo.findAll();
+		return publisherRepo.findAllByOrderByName();
 	}
 
 	public Publisher findPublisherById(Long id) {
