@@ -7,7 +7,7 @@ import org.wcci.apimastery.entities.System;
 @Repository
 public interface SystemRepository extends CrudRepository<System, Long> {
 
-	public Iterable<System> findAllOrderByName();
+	public Iterable<System> findAllByOrderByName();
 	public System findSystemByName(String name);
 	
 }

@@ -7,7 +7,7 @@ import org.wcci.apimastery.entities.Category;
 @Repository
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 	
-	public Iterable<Category> findAllOrderByName();
+	public Iterable<Category> findAllByOrderByName();
 	public Category findCategoryByName(String name);
 
 }

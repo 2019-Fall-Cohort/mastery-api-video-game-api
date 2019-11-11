@@ -18,6 +18,10 @@ public class CategoryService {
 	public Category addCategory(Category category) {
 		return categoryRepo.save(category);
 	}
+	
+	public List<Category> fetchAllCategories() {
+		return (List<Category>) categoryRepo.findAll();
+	}
 
 	public Category findCategoryById(Long id) {
 		Optional<Category> retrievedCategoryOptional = categoryRepo.findById(id);
@@ -37,14 +41,12 @@ public class CategoryService {
 		}
 
 		return retrievedCategory;
-	}
-
-	public List<Category> fetchAllCategories() {
-		return (List<Category>) categoryRepo.findAll();
-	}
+	}	
 
 	public void deleteCategory(Category category) {
 		categoryRepo.delete(category);
 	}
+	
+	
 
 }

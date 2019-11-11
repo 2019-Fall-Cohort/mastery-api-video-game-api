@@ -71,7 +71,7 @@ public class Game {
 
 	public System getSystem() {
 		return system;
-	}
+	}	
 	
 //	public List<People> getPeople() {
 //	return people;

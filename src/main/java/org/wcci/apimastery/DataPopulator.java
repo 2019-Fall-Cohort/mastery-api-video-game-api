@@ -1,7 +1,5 @@
 package org.wcci.apimastery;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -68,7 +66,7 @@ public class DataPopulator implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
+				
 		for (String categoryName : categories) {
 			Category category = new Category(categoryName);
 			categoryService.addCategory(category);
@@ -82,20 +80,21 @@ public class DataPopulator implements CommandLineRunner {
 		for (String systemName : systems) {
 			System system = new System(systemName);
 			systemService.addSystem(system);
-		}
+		}		
 		
-		
-//		String title, String releaseDate, Category category,
-//		String imageUrl, Publisher publisher, System system
-		
-		gameService.addGame(new Game("Generic Game", 
+		gameService.addGame(new Game("Generic Mobile Game", 
 									 "August 2014", 
 									 categoryService.findCategoryByName("Action"),
 									 "https://picsum.photos/200/300",
 									 publisherService.findPublisherByName("Ubisoft"),
-									 systemService.findSystemByName("Mobile")));
+									 systemService.findSystemByName("Mobile")));	
 		
+		gameService.addGame(new Game("SIMS Phoney", 
+				 				     "Dec 10, 2018", 
+									 categoryService.findCategoryByName("Simulation"),
+									 "https://picsum.photos/200/300",
+									 publisherService.findPublisherByName("NetEase"),
+									 systemService.findSystemByName("PC")));	
 		
 	}
-
 }
