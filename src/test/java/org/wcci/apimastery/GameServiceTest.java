@@ -4,9 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.wcci.apimastery.objects.Game;
-
-import services.GameService;
+import org.wcci.apimastery.entities.Game;
+import org.wcci.apimastery.services.GameService;
 
 public class GameServiceTest {
 

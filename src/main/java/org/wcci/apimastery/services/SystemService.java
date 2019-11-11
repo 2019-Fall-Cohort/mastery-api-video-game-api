@@ -1,14 +1,13 @@
-package services;
+package org.wcci.apimastery.services;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.wcci.apimastery.objects.System;
+import org.wcci.apimastery.entities.System;
+import org.wcci.apimastery.exceptions.SystemNotFoundException;
 import org.wcci.apimastery.repositories.SystemRepository;
-
-import exceptions.SystemNotFoundException;
 
 @Service
 public class SystemService {
@@ -20,6 +19,10 @@ public class SystemService {
 		return systemRepo.save(system);
 	}
 	
+	public List<System> fetchAllSystems() {
+		return systemRepo.findAllByOrderByName();
+	}
+	
 	public System findSystemById(Long id) {
 		Optional<System> retrievedSystemOptional = systemRepo.findById(id);
 		if (!retrievedSystemOptional.isPresent()) {
@@ -28,12 +31,18 @@ public class SystemService {
 		return retrievedSystemOptional.get();
 	}
 	
-	public List<System> fetchAllSystems() {
-		return (List<System>) systemRepo.findAll();
-	}
+	public System findSystemByName(String name) {
+		System retrievedSystem;
+		try {
+			retrievedSystem = systemRepo.findSystemByName(name);
+		} catch (Exception e) {
+			throw new SystemNotFoundException("System not found.");
+		}
+		return retrievedSystem;
+	}	
 	
 	public void deleteSystem(System system) {
 		systemRepo.delete(system);
-	}
+	}	
 
 }
