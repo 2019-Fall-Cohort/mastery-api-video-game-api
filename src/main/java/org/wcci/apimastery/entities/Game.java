@@ -138,11 +138,6 @@ public class Game {
 		if (getClass() != obj.getClass())
 			return false;
 		Game other = (Game) obj;
-		if (category == null) {
-			if (other.category != null)
-				return false;
-		} else if (!category.equals(other.category))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -153,20 +148,11 @@ public class Game {
 				return false;
 		} else if (!imageUrl.equals(other.imageUrl))
 			return false;
-		if (publisher == null) {
-			if (other.publisher != null)
-				return false;
-		} else if (!publisher.equals(other.publisher))
-			return false;
+
 		if (releaseDate == null) {
 			if (other.releaseDate != null)
 				return false;
 		} else if (!releaseDate.equals(other.releaseDate))
-			return false;
-		if (system == null) {
-			if (other.system != null)
-				return false;
-		} else if (!system.equals(other.system))
 			return false;
 		if (title == null) {
 			if (other.title != null)

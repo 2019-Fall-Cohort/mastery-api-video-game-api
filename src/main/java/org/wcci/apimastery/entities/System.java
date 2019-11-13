@@ -59,11 +59,6 @@ public class System {
 		if (getClass() != obj.getClass())
 			return false;
 		System other = (System) obj;
-		if (games == null) {
-			if (other.games != null)
-				return false;
-		} else if (!games.equals(other.games))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
