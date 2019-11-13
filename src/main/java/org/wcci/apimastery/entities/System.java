@@ -22,6 +22,7 @@ public class System {
 	public System (String name) {
 		this.name = name;
 	}
+	
 	public String getName() {
 		return name;
 	}
