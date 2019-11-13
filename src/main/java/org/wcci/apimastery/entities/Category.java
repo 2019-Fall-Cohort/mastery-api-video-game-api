@@ -55,11 +55,6 @@ public class Category {
 		if (getClass() != obj.getClass())
 			return false;
 		Category other = (Category) obj;
-		if (games == null) {
-			if (other.games != null)
-				return false;
-		} else if (!games.equals(other.games))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;

@@ -2,6 +2,7 @@ package org.wcci.apimastery.entities;
 
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,6 +17,8 @@ public class Publisher {
 	private String name;
 	@OneToMany
 	private List<Game> games;
+	@ElementCollection
+	private List<Comment> comments;
 	
 	protected Publisher() {}
 	
@@ -33,7 +36,7 @@ public class Publisher {
 	public List<Game> getGames() {
 		return games;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Publisher [id=" + id + ", name=" + name + ", games=" + games + "]";
@@ -58,11 +61,6 @@ public class Publisher {
 		if (getClass() != obj.getClass())
 			return false;
 		Publisher other = (Publisher) obj;
-		if (games == null) {
-			if (other.games != null)
-				return false;
-		} else if (!games.equals(other.games))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
